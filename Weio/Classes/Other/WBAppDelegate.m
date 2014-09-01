@@ -32,9 +32,11 @@
         self.window.rootViewController = [[WBNewfeatureViewController alloc]init];
     }else{
         if([WBActionChose showLogin]){
-            self.window.rootViewController = [[WBTabBarViewController alloc]init];
-        }else{
             self.window.rootViewController = [[WBOAuthViewController alloc]init];
+//            self.window.rootViewController = [[WBTabBarViewController alloc]init];
+        }else{
+//            self.window.rootViewController = [[WBOAuthViewController alloc]init];
+            self.window.rootViewController = [[WBTabBarViewController alloc]init];
           
         }
     }

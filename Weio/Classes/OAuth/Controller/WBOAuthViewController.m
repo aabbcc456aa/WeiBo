@@ -92,9 +92,9 @@
 
 }
 
-//- (void)webViewDidStartLoad:(UIWebView *)webView{
-//   [MBProgressHUD showMessage:@"正在加载"];
-//}
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+   [MBProgressHUD showMessage:@"正在加载"];
+}
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
    [MBProgressHUD hideHUD];

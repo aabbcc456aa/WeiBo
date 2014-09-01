@@ -20,9 +20,11 @@
     
 }
 +(WBAccount *)account{
-    NSLog(@"-------accountPath：%@",AccountPath);
+//    NSLog(@"-------accountPath：%@",AccountPath);
     WBAccount *account = [NSKeyedUnarchiver unarchiveObjectWithFile:AccountPath];
     NSDate *now = [NSDate date];
+
+//    return account;
     if([now compare:account.expired_time] == NSOrderedAscending){
         return account;
     }

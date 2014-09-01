@@ -38,6 +38,6 @@
     [aCoder encodeInt64:self.expires_in forKey:@"expires_in"];
     [aCoder encodeInt64:self.remind_in forKey:@"remind_in"];
     [aCoder encodeInt64:self.uid forKey:@"uid"];
-    [aCoder encodeObject:self.expired_time forKey:@"expried_time"];
+    [aCoder encodeObject:self.expired_time forKey:@"expired_time"];
 }
 @end

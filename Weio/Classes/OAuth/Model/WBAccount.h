@@ -10,8 +10,8 @@
 
 @interface WBAccount : NSObject <NSCoding>
 
-@property (nonatomic,strong) NSString *access_token;
-@property (nonatomic,assign) NSDate *expired_time;
+@property (nonatomic,copy) NSString *access_token;
+@property (nonatomic,strong) NSDate *expired_time;
 @property (nonatomic,assign) long long expires_in;
 @property (nonatomic,assign) long long remind_in;
 @property (nonatomic,assign) long long uid;
