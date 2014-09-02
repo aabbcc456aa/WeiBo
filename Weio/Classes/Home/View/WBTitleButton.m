@@ -41,4 +41,16 @@
     return CGRectMake(x, y, w, h);
 }
 
+-(void)setTitle:(NSString *)title forState:(UIControlState)state{
+    CGFloat titleW = [title sizeWithFont:self.titleLabel.font].width;
+    CGFloat btnW = titleW + WBTitleButtonW + 5;
+    
+    
+    CGRect btnFrame = self.frame;
+    btnFrame.size.width = btnW;
+    self.frame = btnFrame;
+    [super setTitle:title forState:state];
+    
+}
+
 @end

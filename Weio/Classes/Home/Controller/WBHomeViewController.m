@@ -18,12 +18,14 @@
 #import "WBStatus.h"
 #import "WBPhoto.h"
 #import "MJRefresh.h"
+#import "WBUser.h"
 
 @interface WBHomeViewController ()<MJRefreshBaseViewDelegate>
 
 @property (nonatomic,strong) NSMutableArray *statusFrames;
 @property (nonatomic,weak) UIRefreshControl *refreshControl;
 @property (nonatomic,strong) MJRefreshFooterView *refreshFootView;
+@property (nonatomic,strong) WBTitleButton *titleBtn;
 
 @end
 
@@ -32,6 +34,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.backgroundColor = WBColor(226, 226, 226);
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, WBStatusTableBorder, 0);
 	
     [self setupNavBar];
     
@@ -39,9 +44,29 @@
     
     [self setupLoadMore];
     
-    self.tableView.backgroundColor = WBColor(226, 226, 226);
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, WBStatusTableBorder, 0);
+    [self loadUserInfo];
+
     
+}
+
+-(void)loadUserInfo{
+    AFHTTPRequestOperationManager *man = [AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = [WBAccountTool account].access_token;
+    params[@"uid"] = @([WBAccountTool account].uid);
+    
+    // 3.发送请求
+    [man GET:@"https://api.weibo.com/2/users/show.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        WBUser *user = [WBUser objectWithKeyValues:responseObject];
+        [self.titleBtn setTitle:user.name forState:UIControlStateNormal];
+        
+        // store user name
+        WBAccount *account = [WBAccountTool account];
+        account.user_name = user.name;
+        [WBAccountTool saveAccount:account];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    }];
 }
 
 
@@ -173,11 +198,17 @@
     
     // 设置中间 标题
     WBTitleButton *titleBtn = [[WBTitleButton alloc]init];
-    [titleBtn setTitle:@"微博首页" forState:UIControlStateNormal];
+    WBAccount *account = [WBAccountTool account];
+     titleBtn.frame = CGRectMake(0, 0, 0, 35);
+    if(account.user_name){
+        [titleBtn setTitle:account.user_name forState:UIControlStateNormal];
+    }else{
+       [titleBtn setTitle:@"微博首页" forState:UIControlStateNormal];
+    }
     [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
-    titleBtn.frame = CGRectMake(0, 0, 120, 35);
     [titleBtn addTarget:self action:@selector(titleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = titleBtn;
+    self.titleBtn = titleBtn;
 }
 
 -(void)titleBtnClick:(WBTitleButton *)titleBtn{
