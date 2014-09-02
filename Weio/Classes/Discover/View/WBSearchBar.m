@@ -18,7 +18,7 @@
         [self setBackground:[UIImage resizedImageWithName:@"searchbar_textfield_background"]];
         
         // 左边图标
-        UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imagewithName:@"searchbar_textfield_search_icon"]];
+        UIImageView *searchIcon = [[UIImageView alloc]initWithImage:[UIImage imageWithName:@"searchbar_textfield_search_icon"]];
         searchIcon.contentMode = UIViewContentModeCenter;
         self.leftView = searchIcon;
         self.leftViewMode = UITextFieldViewModeAlways;

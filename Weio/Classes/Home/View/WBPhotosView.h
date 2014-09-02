@@ -10,4 +10,7 @@
 
 @interface WBPhotosView : UIView
 
+@property (nonatomic,weak) NSArray *photos;
+
++ (CGSize)photosViewSizeWithPhotosCount:(int)count;
 @end

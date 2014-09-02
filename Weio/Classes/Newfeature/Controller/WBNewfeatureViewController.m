@@ -58,7 +58,7 @@
     CGFloat screenH = self.view.frame.size.height;
     for(int i = 0;i < PageNum; i++){
         NSString *imageName = [NSString stringWithFormat:@"new_feature_%d",i + 1];
-        UIImageView  *imageView = [[UIImageView alloc]initWithImage:[UIImage imagewithName:imageName]];
+        UIImageView  *imageView = [[UIImageView alloc]initWithImage:[UIImage imageWithName:imageName]];
         CGFloat x = screenW * i;
         imageView.frame = CGRectMake(x, 0, screenW, screenH);
         if( i  == PageNum - 1){
@@ -78,8 +78,8 @@
     // -----------   开始体验按钮
     imageView.userInteractionEnabled = YES;
     UIButton *startBtn = [[UIButton alloc]init];
-    [startBtn setBackgroundImage:[UIImage imagewithName:@"new_feature_finish_button"]  forState:UIControlStateNormal];
-    [startBtn setBackgroundImage:[UIImage imagewithName:@"new_feature_finish_button_highlighted"]  forState:UIControlStateHighlighted];
+    [startBtn setBackgroundImage:[UIImage imageWithName:@"new_feature_finish_button"]  forState:UIControlStateNormal];
+    [startBtn setBackgroundImage:[UIImage imageWithName:@"new_feature_finish_button_highlighted"]  forState:UIControlStateHighlighted];
     startBtn.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height * 0.6);
     startBtn.bounds = CGRectMake(0, 0, 110, 40);
     
@@ -100,8 +100,8 @@
     shareBtn.titleLabel.font = [UIFont systemFontOfSize:19];
     
     // icon
-    [shareBtn setImage:[UIImage imagewithName:@"new_feature_share_false"] forState:UIControlStateNormal];
-    [shareBtn setImage:[UIImage imagewithName:@"new_feature_share_true"] forState:UIControlStateSelected];
+    [shareBtn setImage:[UIImage imageWithName:@"new_feature_share_false"] forState:UIControlStateNormal];
+    [shareBtn setImage:[UIImage imageWithName:@"new_feature_share_true"] forState:UIControlStateSelected];
     shareBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     
     [shareBtn addTarget:self action:@selector(shareBtnClick:) forControlEvents:UIControlEventTouchUpInside];

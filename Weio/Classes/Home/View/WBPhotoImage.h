@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class WBPhoto;
 
-@interface WBPhotoImage : UIImage
+@interface WBPhotoImage : UIImageView
+
+@property (nonatomic,strong) WBPhoto *photo;
 
 @end

@@ -1,37 +1,37 @@
 //
-//  IWStatusFrame.h
+//  WBStatusFrame.h
 //  ItcastWeibo
 //
 //  Created by apple on 14-5-9.
 //  Copyright (c) 2014年 itcast. All rights reserved.
-//  一个cell对应一个IWStatusFrame对象
+//  一个cell对应一个WBStatusFrame对象
 
 #import <Foundation/Foundation.h>
 
 /** 昵称的字体 */
-#define IWStatusNameFont [UIFont systemFontOfSize:15]
+#define WBStatusNameFont [UIFont systemFontOfSize:15]
 /** 被转发微博作者昵称的字体 */
-#define IWRetweetStatusNameFont IWStatusNameFont
+#define WBRetweetStatusNameFont WBStatusNameFont
 
 /** 时间的字体 */
-#define IWStatusTimeFont [UIFont systemFontOfSize:12]
+#define WBStatusTimeFont [UIFont systemFontOfSize:12]
 /** 来源的字体 */
-#define IWStatusSourceFont IWStatusTimeFont
+#define WBStatusSourceFont WBStatusTimeFont
 
 /** 正文的字体 */
-#define IWStatusContentFont [UIFont systemFontOfSize:13]
+#define WBStatusContentFont [UIFont systemFontOfSize:13]
 /** 被转发微博正文的字体 */
-#define IWRetweetStatusContentFont IWStatusContentFont
+#define WBRetweetStatusContentFont WBStatusContentFont
 
 /** 表格的边框宽度 */
-#define IWStatusTableBorder 5
+#define WBStatusTableBorder 5
 
 /** cell的边框宽度 */
-#define IWStatusCellBorder 10
+#define WBStatusCellBorder 8
 
-@class IWStatus;
-@interface IWStatusFrame : NSObject
-@property (nonatomic, strong) IWStatus *status;
+@class WBStatus;
+@interface WBStatusFrame : NSObject
+@property (nonatomic, strong) WBStatus *status;
 
 /** 顶部的view */
 @property (nonatomic, assign, readonly) CGRect topViewF;
@@ -44,9 +44,9 @@
 /** 昵称 */
 @property (nonatomic, assign, readonly) CGRect nameLabelF;
 /** 时间 */
-@property (nonatomic, assign, readonly) CGRect timeLabelF;
+@property (nonatomic, assign) CGRect timeLabelF;
 /** 来源 */
-@property (nonatomic, assign, readonly) CGRect sourceLabelF;
+@property (nonatomic, assign) CGRect sourceLabelF;
 /** 正文\内容 */
 @property (nonatomic, assign, readonly) CGRect contentLabelF;
 

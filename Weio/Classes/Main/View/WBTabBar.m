@@ -29,16 +29,16 @@
     self = [super initWithFrame:frame];
     if(self){
         if (!IOS7){
-            self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imagewithName:@"tabbar_background"]];
+            self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageWithName:@"tabbar_background"]];
         }
     }
     
     // 加号 button
     UIButton *centenBtn = [[UIButton alloc]init];
-    [centenBtn setImage:[UIImage imagewithName:@"tabbar_compose_icon_add"] forState:UIControlStateNormal];
-    [centenBtn setImage:[UIImage imagewithName:@"tabbar_compose_icon_add_highlighted"] forState:UIControlStateHighlighted];
-    [centenBtn setBackgroundImage:[UIImage imagewithName:@"tabbar_compose_button"] forState:UIControlStateNormal];
-    [centenBtn setBackgroundImage:[UIImage imagewithName:@"tabbar_compose_button_hightlighted"] forState:UIControlStateHighlighted];
+    [centenBtn setImage:[UIImage imageWithName:@"tabbar_compose_icon_add"] forState:UIControlStateNormal];
+    [centenBtn setImage:[UIImage imageWithName:@"tabbar_compose_icon_add_highlighted"] forState:UIControlStateHighlighted];
+    [centenBtn setBackgroundImage:[UIImage imageWithName:@"tabbar_compose_button"] forState:UIControlStateNormal];
+    [centenBtn setBackgroundImage:[UIImage imageWithName:@"tabbar_compose_button_hightlighted"] forState:UIControlStateHighlighted];
     if(!IOS7){
         [centenBtn setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbar_slider"]]];
     }
@@ -63,9 +63,7 @@
 }
 
 -(void)btnClick:(WBTabBarButton *)button{
-    NSLog(@"-----click button %d",button.tag);
     if([self.delegate respondsToSelector:@selector(tabBar:didSelectedButtonFrom:to:)]){
-        NSLog(@"--------didSelectedButton  %d",button.tag);
         [self.delegate tabBar:self didSelectedButtonFrom:self.selectButton.tag to:button.tag];
     }
     self.selectButton.selected = NO;

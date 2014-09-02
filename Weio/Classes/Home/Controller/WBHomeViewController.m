@@ -13,10 +13,14 @@
 #import "WBAccount.h"
 #import "UIImageView+WebCache.h"
 #import "MJExtension.h"
+#import "WBStatusCell.h"
+#import "WBStatusFrame.h"
+#import "WBStatus.h"
+#import "WBPhoto.h"
 
 @interface WBHomeViewController ()
 
-@property (nonatomic,strong) NSMutableArray *statusLines;
+@property (nonatomic,strong) NSMutableArray *statusFrames;
 
 @end
 
@@ -29,7 +33,9 @@
     [self setupNavBar];
     
     [self setupStatusTimeLine];
-
+    
+    self.tableView.backgroundColor = WBColor(226, 226, 226);
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, WBStatusTableBorder, 0);
     
 }
 
@@ -42,8 +48,15 @@
     params[@"access_token"] = [WBAccountTool account].access_token;
     
     [man GET:@"https://api.weibo.com/2/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"---status:---:%@",responseObject);
-        self.statusLines = responseObject[@"statuses"];
+//        NSLog(@"---status:---:%@",responseObject[@"pic_urls"]);
+        
+        NSArray *array  =[WBStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        self.statusFrames = [NSMutableArray array];
+        for(WBStatus *status in array){
+            WBStatusFrame *statusFrame = [[WBStatusFrame alloc]init];
+            [statusFrame setStatus:status];
+            [self.statusFrames addObject:statusFrame];
+        }
         [self.tableView reloadData];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -63,18 +76,18 @@
     
     // 设置中间 标题
     WBTitleButton *titleBtn = [[WBTitleButton alloc]init];
-    [titleBtn setTitle:@"哈哈哈哈" forState:UIControlStateNormal];
-    [titleBtn setImage:[UIImage imagewithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+    [titleBtn setTitle:@"微博首页" forState:UIControlStateNormal];
+    [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
     titleBtn.frame = CGRectMake(0, 0, 120, 35);
     [titleBtn addTarget:self action:@selector(titleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = titleBtn;
 }
 
 -(void)titleBtnClick:(WBTitleButton *)titleBtn{
-    if(titleBtn.currentImage == [UIImage imagewithName:@"navigationbar_arrow_down"]){
-         [titleBtn setImage:[UIImage imagewithName:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
+    if(titleBtn.currentImage == [UIImage imageWithName:@"navigationbar_arrow_down"]){
+         [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
     }else{
-         [titleBtn setImage:[UIImage imagewithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+         [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
     }
 }
 
@@ -87,30 +100,25 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.statusLines.count;
+    return self.statusFrames.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *ID = @"WB";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if(!cell){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
-    }
-    cell.textLabel.text = self.statusLines[indexPath.row][@"user"][@"name"];
-    cell.detailTextLabel.text = self.statusLines[indexPath.row][@"text"];
-    [cell.imageView setImageWithURL:[NSURL URLWithString:self.statusLines[indexPath.row][@"user"][@"profile_image_url"]] placeholderImage:[UIImage imagewithName:@"app"]];
+    WBStatusCell *cell = [WBStatusCell cellWithTableView:tableView];
+    [cell setStatusFrame: self.statusFrames[indexPath.row]];
+    
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIViewController *viewCon = [[UIViewController alloc]init];
-    viewCon.view.backgroundColor = [UIColor redColor];
-    [self.navigationController pushViewController:viewCon animated:YES];
-    
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    UIViewController *viewCon = [[UIViewController alloc]init];
+//    viewCon.view.backgroundColor = [UIColor redColor];
+//    [self.navigationController pushViewController:viewCon animated:YES];
+//    
+//}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40;
+    return [self.statusFrames[indexPath.row] cellHeight];
 }
 
 @end

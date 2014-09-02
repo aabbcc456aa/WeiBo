@@ -12,8 +12,8 @@
 
 +(UIBarButtonItem *)itemWithIcon:(NSString *)icon highIcon:(NSString *)highIcon target:(id)target action:(SEL)action{
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setImage:[UIImage imagewithName:icon] forState:UIControlStateNormal];
-    [btn setImage:[UIImage imagewithName:highIcon] forState:UIControlStateHighlighted];
+    [btn setImage:[UIImage imageWithName:icon] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageWithName:highIcon] forState:UIControlStateHighlighted];
     btn.frame = CGRectMake(0, 0, btn.currentImage.size.width, btn.currentImage.size.height);
 
     [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];

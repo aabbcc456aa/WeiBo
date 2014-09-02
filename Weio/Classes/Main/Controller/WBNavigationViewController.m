@@ -28,7 +28,7 @@
 +(void)setupNavBarTheme{
     UINavigationBar *navBar = [UINavigationBar appearance];
     if(!IOS7){
-      [navBar setBackgroundImage:[UIImage imagewithName:@"navigationbar_background"] forBarMetrics:UIBarMetricsDefault];
+      [navBar setBackgroundImage:[UIImage imageWithName:@"navigationbar_background"] forBarMetrics:UIBarMetricsDefault];
       [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
     }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -42,9 +42,9 @@
 +(void)setupNavBarButton{
     UIBarButtonItem *btnItem = [UIBarButtonItem appearance];
     if(!IOS7){
-        [btnItem setBackgroundImage:[UIImage imagewithName:@"navigationbar_button_background"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-        [btnItem setBackgroundImage:[UIImage imagewithName:@"navigationbar_button_background_disable"] forState:UIControlStateDisabled barMetrics:UIBarMetricsDefault];
-        [btnItem setBackgroundImage:[UIImage imagewithName:@"navigationbar_button_background_pushed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+        [btnItem setBackgroundImage:[UIImage imageWithName:@"navigationbar_button_background"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        [btnItem setBackgroundImage:[UIImage imageWithName:@"navigationbar_button_background_disable"] forState:UIControlStateDisabled barMetrics:UIBarMetricsDefault];
+        [btnItem setBackgroundImage:[UIImage imageWithName:@"navigationbar_button_background_pushed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     if(IOS7){

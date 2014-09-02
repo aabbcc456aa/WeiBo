@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IWUser : NSObject
+@interface WBUser : NSObject
 /**
  *  用户的ID
  */

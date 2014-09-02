@@ -19,5 +19,13 @@
       <ContextState
          contextName = "+[WBAccountTool account]:WBAccountTool.m">
       </ContextState>
+      <ContextState
+         contextName = "-[WBStatus created_at]:WBStatus.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_created_at">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

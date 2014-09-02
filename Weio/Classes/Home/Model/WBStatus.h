@@ -7,9 +7,9 @@
 //  微博模型(一个IWStatus对象就代表一条微博)
 
 #import <Foundation/Foundation.h>
-@class IWUser;
+@class WBUser;
 
-@interface IWStatus : NSObject
+@interface WBStatus : NSObject
 /**
  *  微博的内容(文字)
  */
@@ -30,7 +30,7 @@
  *  微博的单张配图
  */
 @property (nonatomic, copy) NSString *thumbnail_pic;
-
+@property (nonatomic,strong) NSArray *pic_urls;
 /**
  *  微博的转发数
  */
@@ -47,10 +47,10 @@
 /**
  *  微博的作者
  */
-@property (nonatomic, strong) IWUser *user;
+@property (nonatomic, strong) WBUser *user;
 /**
  *  被转发的微博
  */
-@property (nonatomic, strong) IWStatus *retweeted_status;
+@property (nonatomic, strong) WBStatus *retweeted_status;
 
 @end

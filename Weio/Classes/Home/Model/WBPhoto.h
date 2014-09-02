@@ -10,4 +10,6 @@
 
 @interface WBPhoto : NSObject
 
+@property (nonatomic,copy) NSString *thumbnail_pic;
+
 @end

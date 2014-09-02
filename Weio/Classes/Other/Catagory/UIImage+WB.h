@@ -11,9 +11,12 @@
 @interface UIImage (WB)
 
 // 自动识别ios7 image
-+ (UIImage *)imagewithName:(NSString *)imageName;
++ (UIImage *)imageWithName:(NSString *)imageName;
 
 // 拉伸图片
 + (UIImage *)resizedImageWithName:(NSString *)imageName;
+
+// 拉伸图片
++ (UIImage *)resizedImageWithName:(NSString *)imageName left:(CGFloat)left top:(CGFloat)top;
 
 @end

@@ -15,6 +15,7 @@
 #import "WBTabBar.h"
 //#import "WBTabBarButton.h"
 #import "WBNavigationViewController.h"
+#import "MBProgressHUD+MJ.h"
 
 @interface WBTabBarViewController () <WBTabBarDelegate>
 @property (nonatomic,strong) WBTabBar *tabBarView;
@@ -34,6 +35,7 @@
 
 - (void)viewDidLoad
 {
+    [MBProgressHUD hideHUD];
     [super viewDidLoad];
     [self initTabBar];
     [self initChildController];
@@ -74,7 +76,7 @@
 //    navCon.tabBarItem.title = title;
 //    navCon.navigationItem.title = title;
     controller.title = title;
-    controller.tabBarItem.image = [UIImage imagewithName:imageName];
+    controller.tabBarItem.image = [UIImage imageWithName:imageName];
     controller.tabBarItem.badgeValue = badgeValue;
     if(IOS7){
         controller.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -87,7 +89,7 @@
 }
 
 -(void)tabBar:(WBTabBar *)tabBar didSelectedButtonFrom:(int)from to:(int)to{
-     NSLog(@"--------set Index %d",to);
+//     NSLog(@"--------set Index %d",to);
     [self setSelectedIndex:to];
 }
 

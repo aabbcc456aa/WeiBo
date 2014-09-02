@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 itcast. All rights reserved.
 //
 
-#import "IWUser.h"
+#import "WBUser.h"
 
-@implementation IWUser
+@implementation WBUser
 @end

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@class WBStatusFrame;
 
-@interface WBStatusTopView : UIView
+@interface WBStatusTopView : UIImageView
 
+@property (nonatomic,strong) WBStatusFrame *statusFrame;
 @end

@@ -9,7 +9,7 @@
 #import "UIImage+WB.h"
 
 @implementation UIImage (WB)
-+(UIImage *)imagewithName:(NSString *)imageName{
++(UIImage *)imageWithName:(NSString *)imageName{
     NSString *newImageName = imageName;
     if(IOS7){
         newImageName = [imageName stringByAppendingString:@"_os7"];
@@ -22,8 +22,13 @@
 }
 
 + (UIImage *)resizedImageWithName:(NSString *)imageName{
-    UIImage *image = [UIImage imagewithName:imageName];
+    UIImage *image = [UIImage imageWithName:imageName];
     return [image stretchableImageWithLeftCapWidth:image.size.width / 2 topCapHeight:image.size.height / 2];
+}
+
++ (UIImage *)resizedImageWithName:(NSString *)imageName left:(CGFloat)left top:(CGFloat)top{
+    UIImage *image = [UIImage imageWithName:imageName];
+    return [image stretchableImageWithLeftCapWidth:image.size.width * left topCapHeight:image.size.height * top];
 }
 
 @end
