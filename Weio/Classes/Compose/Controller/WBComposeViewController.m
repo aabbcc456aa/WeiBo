@@ -13,12 +13,14 @@
 #import "MBProgressHUD+MJ.h"
 #import "WBAccount.h"
 #import "WBComposeToolBar.h"
+#import "WBComposePhotosView.h"
 
 
 @interface WBComposeViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, WbComposeToolBarDelegate>
 
 @property(nonatomic,strong) WBTextView *textView;
 @property(nonatomic,strong) WBComposeToolBar *toolBar;
+@property(nonatomic,strong) WBComposePhotosView *photosView;
 
 @end
 
@@ -41,8 +43,21 @@
     
     [self setupTextView];
     
+    //图片区域
+    [self setupComposePhotosView];
+    
     // init compose button with more function
     [self setupComposeToolBar];
+   
+    
+}
+
+-(void)setupComposePhotosView{
+    WBComposePhotosView *photosView = [[WBComposePhotosView alloc]init];
+    CGFloat w = [UIScreen mainScreen].bounds.size.width;
+    photosView.frame = CGRectMake(0, 150, w, 300);
+    [self.view addSubview:photosView];
+    self.photosView = photosView;
     
 }
 -(void)setupComposeToolBar{
@@ -55,8 +70,8 @@
     self.toolBar = toolBar;
     
     // 监听键盘改变  而更改微博工具条
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardDidHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 // 实现 toolBar 协议中方法
@@ -92,13 +107,19 @@
 
 //保留图片
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-//    UIImage *image = info[UIImagePickerControllerOriginalImage];
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:info[UIImagePickerControllerOriginalImage]];
-    imageView.frame = CGRectMake(5, 100, 100, 100);
-    [self.textView addSubview:imageView];
-//    image
-    
+    [self.photosView addImage:info[UIImagePickerControllerOriginalImage]];
     [self dismissViewControllerAnimated:YES completion:nil];
+    if(self.photosView.totalImages.count == 2){
+        UIButton *btn1 = self.toolBar.subviews[0];
+        UIButton *btn2 = self.toolBar.subviews[1];
+         btn1.enabled = NO;
+         btn2.enabled = NO;
+    }else{
+        UIButton *btn1 = self.toolBar.subviews[0];
+        UIButton *btn2 = self.toolBar.subviews[1];
+        btn1.enabled = NO;
+        btn2.enabled = YES;
+    }
 }
 
 
@@ -169,16 +190,29 @@
     params[@"status"] = self.textView.text;
     params[@"access_token"] = [WBAccountTool account].access_token;
     
-    // 3.发送请求
-    [mgr POST:@"https://api.weibo.com/2/statuses/update.json" parameters:params
-      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-          [MBProgressHUD showSuccess:@"发送成功"];
-      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-          [MBProgressHUD showError:@"发送失败"];
-      }];
+     // 3.发送请求 no photo
+    if(!self.photosView.totalImages){
+        [mgr POST:@"https://api.weibo.com/2/statuses/update.json" parameters:params
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              [MBProgressHUD showSuccess:@"发送成功"];
+          } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              [MBProgressHUD showError:@"发送失败"];
+          }];
+    }else{
+       [mgr POST:@"https://api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+           NSArray *imageArr = self.photosView.totalImages;
+           for(UIImage *image in imageArr){
+               NSData *imageData  = UIImageJPEGRepresentation(image, 0.2);
+               [formData appendPartWithFileData:imageData name:@"pic" fileName:@"" mimeType:@"image/jpeg"];
+           }
+        }success:^(AFHTTPRequestOperation *operation, id responseObject) {
+           [MBProgressHUD showSuccess:@"发送成功"];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+           [MBProgressHUD showError:[NSString stringWithFormat:@"发送失败:%@",error]];
+        }];
+    }
     
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 -(void)cancelStatus{

@@ -8,6 +8,7 @@
 
 #import "WBComposeToolBar.h"
 
+
 @implementation WBComposeToolBar
 
 - (id)initWithFrame:(CGRect)frame

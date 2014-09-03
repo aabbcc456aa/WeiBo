@@ -30,6 +30,7 @@
 		5C6854A319B6B84C00F95E0F /* WBComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854A219B6B84C00F95E0F /* WBComposeViewController.m */; };
 		5C6854A619B6C15C00F95E0F /* WBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854A519B6C15C00F95E0F /* WBTextView.m */; };
 		5C6854A919B6FC8200F95E0F /* WBComposeToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854A819B6FC8200F95E0F /* WBComposeToolBar.m */; };
+		5C6854AC19B7363E00F95E0F /* WBComposePhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854AB19B7363E00F95E0F /* WBComposePhotosView.m */; };
 		5C6B99B319B2F7BA00FC58D0 /* WBOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B99B219B2F7BA00FC58D0 /* WBOAuthViewController.m */; };
 		5C6B99C919B2F9B600FC58D0 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B99B719B2F9B600FC58D0 /* AFHTTPRequestOperation.m */; };
 		5C6B99CA19B2F9B600FC58D0 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B99B919B2F9B600FC58D0 /* AFHTTPRequestOperationManager.m */; };
@@ -151,6 +152,8 @@
 		5C6854A519B6C15C00F95E0F /* WBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTextView.m; sourceTree = "<group>"; };
 		5C6854A719B6FC8200F95E0F /* WBComposeToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBComposeToolBar.h; sourceTree = "<group>"; };
 		5C6854A819B6FC8200F95E0F /* WBComposeToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBComposeToolBar.m; sourceTree = "<group>"; };
+		5C6854AA19B7363E00F95E0F /* WBComposePhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBComposePhotosView.h; sourceTree = "<group>"; };
+		5C6854AB19B7363E00F95E0F /* WBComposePhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBComposePhotosView.m; sourceTree = "<group>"; };
 		5C6B99B119B2F7BA00FC58D0 /* WBOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBOAuthViewController.h; sourceTree = "<group>"; };
 		5C6B99B219B2F7BA00FC58D0 /* WBOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBOAuthViewController.m; sourceTree = "<group>"; };
 		5C6B99B619B2F9B600FC58D0 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -652,6 +655,8 @@
 				5C6854A519B6C15C00F95E0F /* WBTextView.m */,
 				5C6854A719B6FC8200F95E0F /* WBComposeToolBar.h */,
 				5C6854A819B6FC8200F95E0F /* WBComposeToolBar.m */,
+				5C6854AA19B7363E00F95E0F /* WBComposePhotosView.h */,
+				5C6854AB19B7363E00F95E0F /* WBComposePhotosView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1049,6 +1054,7 @@
 				5C6B9A0219B410BC00FC58D0 /* MJTypeEncoding.m in Sources */,
 				5C6B9A0419B410BC00FC58D0 /* NSObject+MJKeyValue.m in Sources */,
 				5C40C58819AEDEDB009DE543 /* WBDiscoverViewController.m in Sources */,
+				5C6854AC19B7363E00F95E0F /* WBComposePhotosView.m in Sources */,
 				5C6B9A0319B410BC00FC58D0 /* NSObject+MJCoding.m in Sources */,
 				5CF3916419B5616E008F0B23 /* MJPhotoView.m in Sources */,
 				5C40C58D19AEDEDB009DE543 /* main.m in Sources */,
