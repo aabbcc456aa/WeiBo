@@ -41,19 +41,19 @@
     CGFloat width = WBPhotoW;
     CGFloat height = WBPhotoH;
     CGFloat margin = WBPhotoMargin;
-    CGFloat startX = (self.frame.size.width - 3 * width - 2 * margin) * 0.5;
     CGFloat startY = 0;
     for (int i = 0; i< 9; i++) {
         WBPhotoImage *photoView = self.subviews[i];
-        // 计算位置
-        int row = i/3;
-        int column = i%3;
-        CGFloat x = startX + column * (width + margin);
-        CGFloat y = startY + row * (height + margin);
-     
-        photoView.frame = CGRectMake(x, y, width, height);
-        
+
         if (i < photos.count){
+                     // 计算位置
+            int maxColumns = (photos.count == 4) ? 2 : 3;
+            int col = i % maxColumns;
+            int row = i / maxColumns;
+            CGFloat x = margin + col * (width + margin);
+            CGFloat y = startY + row * (height + margin);
+            
+            photoView.frame = CGRectMake(x, y, width, height);
             photoView.photo = photos[i];
             photoView.clipsToBounds = YES;
             photoView.contentMode = UIViewContentModeScaleAspectFill;
@@ -66,6 +66,7 @@
 }
 
 
+// 点击图片后事件
 - (void)tapImage:(UITapGestureRecognizer *)tap
 {
     int count = self.photos.count;
@@ -88,6 +89,8 @@
     [browser show];
 }
 
+
+// 计算 photosView size
 + (CGSize)photosViewSizeWithPhotosCount:(int)count
 {
     // 一行最多有3列
