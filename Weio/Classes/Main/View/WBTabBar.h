@@ -13,6 +13,7 @@
 @protocol WBTabBarDelegate <NSObject>
 
 -(void)tabBar:(WBTabBar *)tabBar didSelectedButtonFrom:(int)from to:(int)to;
+-(void)tabBarDidClickPlusButton:(WBTabBarButton *)btn;
 
 @end
 

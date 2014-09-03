@@ -40,10 +40,13 @@
 	
     [self setupNavBar];
     
+    // load newest status
     [self setupLoadNew];
     
+    // load histroy status
     [self setupLoadMore];
     
+    // load username
     [self loadUserInfo];
 
     
@@ -105,6 +108,10 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.refreshFootView endRefreshing];
     }];
+}
+
+-(void)dealloc{
+    [self.refreshFootView free];
 }
 
 -(void)setupLoadNew{

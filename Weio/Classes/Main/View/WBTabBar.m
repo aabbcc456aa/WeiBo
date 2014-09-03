@@ -42,12 +42,13 @@
     if(!IOS7){
         [centenBtn setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbar_slider"]]];
     }
+    [centenBtn addTarget:self action:@selector(clickPlusButton:) forControlEvents:UIControlEventTouchUpInside];
     self.centerBtn = centenBtn;
     [self addSubview:centenBtn];
     return self;
 }
 
-
+// interface : for add button
 -(void)addTarBarButton:(UITabBarItem *)item{
     WBTabBarButton *btn = [[WBTabBarButton alloc]init];
     [self.tabBarButtons addObject:btn];
@@ -62,6 +63,8 @@
    
 }
 
+
+// click button switch view
 -(void)btnClick:(WBTabBarButton *)button{
     if([self.delegate respondsToSelector:@selector(tabBar:didSelectedButtonFrom:to:)]){
         [self.delegate tabBar:self didSelectedButtonFrom:self.selectButton.tag to:button.tag];
@@ -69,9 +72,16 @@
     self.selectButton.selected = NO;
     button.selected = YES;
     self.selectButton = button;
-  
-    
 }
+
+
+//click plus button then switch into compose
+-(void)clickPlusButton:(WBTabBarButton *)plusBtn{
+    if([self.delegate respondsToSelector:@selector(tabBarDidClickPlusButton:)]){
+        [self.delegate tabBarDidClickPlusButton:plusBtn];
+    }
+}
+
 -(void)layoutSubviews{
     [super layoutSubviews];
  

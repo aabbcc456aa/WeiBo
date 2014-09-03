@@ -48,7 +48,7 @@
     }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     if(IOS7){
-        dict[UITextAttributeFont] = [UIFont systemFontOfSize:14];
+        dict[UITextAttributeFont] = [UIFont systemFontOfSize:15];
         dict[UITextAttributeTextColor] = [UIColor orangeColor];
     }else{
         dict[UITextAttributeFont] = [UIFont systemFontOfSize:12];
@@ -57,6 +57,21 @@
     dict[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
     [btnItem setTitleTextAttributes:dict forState:UIControlStateNormal];
     [btnItem setTitleTextAttributes:dict forState:UIControlStateHighlighted];
+    
+    
+    // 设置 disabled 属性
+     NSMutableDictionary *disableDict = [NSMutableDictionary dictionary];
+    if(IOS7){
+        disableDict[UITextAttributeFont] = [UIFont systemFontOfSize:15];
+        disableDict[UITextAttributeTextColor] = [UIColor lightGrayColor];
+    }else{
+        disableDict[UITextAttributeFont] = [UIFont systemFontOfSize:12];
+        disableDict[UITextAttributeTextColor] = [UIColor lightGrayColor];
+    }
+    disableDict[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
+    [btnItem setTitleTextAttributes:disableDict forState:UIControlStateDisabled];
+
+
     
 }
 

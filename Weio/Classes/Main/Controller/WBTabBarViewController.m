@@ -16,6 +16,7 @@
 //#import "WBTabBarButton.h"
 #import "WBNavigationViewController.h"
 #import "MBProgressHUD+MJ.h"
+#import "WBComposeViewController.h"
 
 @interface WBTabBarViewController () <WBTabBarDelegate>
 @property (nonatomic,strong) WBTabBar *tabBarView;
@@ -88,9 +89,16 @@
     [self.tabBarView addTarBarButton:controller.tabBarItem];
 }
 
+
+// implement switch view method
 -(void)tabBar:(WBTabBar *)tabBar didSelectedButtonFrom:(int)from to:(int)to{
-//     NSLog(@"--------set Index %d",to);
     [self setSelectedIndex:to];
+}
+
+-(void)tabBarDidClickPlusButton:(WBTabBarButton *)btn{
+    WBComposeViewController *composeCon = [[WBComposeViewController alloc]init];
+    WBNavigationViewController *navCon = [[WBNavigationViewController alloc]initWithRootViewController:composeCon];
+    [self presentViewController:navCon animated:YES completion:nil];
 }
 
 
