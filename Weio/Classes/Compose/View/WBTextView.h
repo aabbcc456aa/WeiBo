@@ -10,4 +10,6 @@
 
 @interface WBTextView : UITextView
 
+-(void)setHolderText:(NSString *)text;
+
 @end

@@ -12,6 +12,8 @@
 #import "WBAccountTool.h"
 #import "MBProgressHUD+MJ.h"
 #import "WBAccount.h"
+#import "WBComposeToolBar.h"
+
 
 @interface WBComposeViewController ()
 
@@ -37,19 +39,34 @@
     [self setupNavItem];
     
     [self setupTextView];
+    
+    // init compose button with more function
+    [self setupComposeToolBar];
 
 }
+-(void)setupComposeToolBar{
+    WBComposeToolBar *toolBar = [[WBComposeToolBar alloc]init];
+    CGFloat h = 44;
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    toolBar.frame = CGRectMake(0, screenSize.height - h, screenSize.width, h);
+    [self.view addSubview:toolBar];
+}
+
 -(void)setupTextView{
     WBTextView *textView = [[WBTextView alloc]init];
+    textView.font = [UIFont systemFontOfSize:16];
+    [textView setTextColor:[UIColor blackColor]];
     textView.frame = self.view.bounds;
-   [self.view addSubview:textView];
+    textView.returnKeyType = UIReturnKeySend;
+    [textView setHolderText:@"分享趣事..." ];
+    [self.view addSubview:textView];
     self.textView = textView;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textViewChange) name:UITextViewTextDidChangeNotification object:textView];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.textView becomeFirstResponder];
+//    [self.textView becomeFirstResponder];
 }
 
 -(void)textViewChange{
