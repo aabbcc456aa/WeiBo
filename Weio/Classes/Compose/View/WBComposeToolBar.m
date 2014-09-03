@@ -39,8 +39,11 @@
 }
 
 -(void)buttonClick:(UIButton *)btn{
-    NSLog(@"------btnClick ---%@",btn);
+    if([self.delegate respondsToSelector:@selector(toolBarButtonDidClick:)]){
+        [self.delegate toolBarButtonDidClick:btn];
+    }
 }
+
 
 -(void)layoutSubviews{
     [super layoutSubviews];

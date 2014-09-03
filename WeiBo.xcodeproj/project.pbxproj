@@ -29,6 +29,7 @@
 		5C40C59719AEECCB009DE543 /* WBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C40C59619AEECCB009DE543 /* WBTabBarButton.m */; };
 		5C6854A319B6B84C00F95E0F /* WBComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854A219B6B84C00F95E0F /* WBComposeViewController.m */; };
 		5C6854A619B6C15C00F95E0F /* WBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854A519B6C15C00F95E0F /* WBTextView.m */; };
+		5C6854A919B6FC8200F95E0F /* WBComposeToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854A819B6FC8200F95E0F /* WBComposeToolBar.m */; };
 		5C6B99B319B2F7BA00FC58D0 /* WBOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B99B219B2F7BA00FC58D0 /* WBOAuthViewController.m */; };
 		5C6B99C919B2F9B600FC58D0 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B99B719B2F9B600FC58D0 /* AFHTTPRequestOperation.m */; };
 		5C6B99CA19B2F9B600FC58D0 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B99B919B2F9B600FC58D0 /* AFHTTPRequestOperationManager.m */; };
@@ -148,6 +149,8 @@
 		5C6854A219B6B84C00F95E0F /* WBComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBComposeViewController.m; sourceTree = "<group>"; };
 		5C6854A419B6C15C00F95E0F /* WBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTextView.h; sourceTree = "<group>"; };
 		5C6854A519B6C15C00F95E0F /* WBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTextView.m; sourceTree = "<group>"; };
+		5C6854A719B6FC8200F95E0F /* WBComposeToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBComposeToolBar.h; sourceTree = "<group>"; };
+		5C6854A819B6FC8200F95E0F /* WBComposeToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBComposeToolBar.m; sourceTree = "<group>"; };
 		5C6B99B119B2F7BA00FC58D0 /* WBOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBOAuthViewController.h; sourceTree = "<group>"; };
 		5C6B99B219B2F7BA00FC58D0 /* WBOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBOAuthViewController.m; sourceTree = "<group>"; };
 		5C6B99B619B2F9B600FC58D0 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -647,6 +650,8 @@
 			children = (
 				5C6854A419B6C15C00F95E0F /* WBTextView.h */,
 				5C6854A519B6C15C00F95E0F /* WBTextView.m */,
+				5C6854A719B6FC8200F95E0F /* WBComposeToolBar.h */,
+				5C6854A819B6FC8200F95E0F /* WBComposeToolBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1024,6 +1029,7 @@
 				5C6B9A2719B410C900FC58D0 /* SDWebImageCompat.m in Sources */,
 				5C6B9A2B19B410C900FC58D0 /* SDWebImageManager.m in Sources */,
 				5C6B9A0119B410BC00FC58D0 /* MJType.m in Sources */,
+				5C6854A919B6FC8200F95E0F /* WBComposeToolBar.m in Sources */,
 				5CF3914F19B55C36008F0B23 /* WBPhoto.m in Sources */,
 				5C6B9A2619B410C900FC58D0 /* SDImageCache.m in Sources */,
 				5C6B99D419B30D4700FC58D0 /* WBAccount.m in Sources */,

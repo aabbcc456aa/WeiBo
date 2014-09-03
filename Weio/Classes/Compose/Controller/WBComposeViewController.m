@@ -15,9 +15,10 @@
 #import "WBComposeToolBar.h"
 
 
-@interface WBComposeViewController ()
+@interface WBComposeViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate, WbComposeToolBarDelegate>
 
 @property(nonatomic,strong) WBTextView *textView;
+@property(nonatomic,strong) WBComposeToolBar *toolBar;
 
 @end
 
@@ -42,14 +43,85 @@
     
     // init compose button with more function
     [self setupComposeToolBar];
-
+    
 }
 -(void)setupComposeToolBar{
     WBComposeToolBar *toolBar = [[WBComposeToolBar alloc]init];
     CGFloat h = 44;
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     toolBar.frame = CGRectMake(0, screenSize.height - h, screenSize.width, h);
+    toolBar.delegate =  self;
     [self.view addSubview:toolBar];
+    self.toolBar = toolBar;
+    
+    // 监听键盘改变  而更改微博工具条
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardDidHideNotification object:nil];
+}
+
+// 实现 toolBar 协议中方法
+-(void)toolBarButtonDidClick:(UIButton *)btn{
+    switch (btn.tag) {
+        case WBComposeToolBarButtonTypeCamera:
+            [self openCamera];
+            break;
+        case WBComposeToolBarButtonTypePicture:
+            [self openPicture];
+            break;
+        default:
+            break;
+    }
+}
+
+
+// 打开相机  需要真机 调试
+-(void)openCamera{
+    UIImagePickerController *pickerCon = [[UIImagePickerController alloc]init];
+    pickerCon.sourceType = UIImagePickerControllerSourceTypeCamera;
+    pickerCon.delegate = self;
+    [self presentViewController:pickerCon animated:YES completion:nil];
+}
+
+// 打开相册
+-(void)openPicture{
+    UIImagePickerController *pickerCon = [[UIImagePickerController alloc]init];
+    pickerCon.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    pickerCon.delegate = self;
+    [self presentViewController:pickerCon animated:YES completion:nil];
+}
+
+//保留图片
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+//    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:info[UIImagePickerControllerOriginalImage]];
+    imageView.frame = CGRectMake(5, 100, 100, 100);
+    [self.textView addSubview:imageView];
+//    image
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+//监听键盘 弹出
+-(void)keyboardWillShow:(NSNotification *)noti{
+    CGFloat duration = [noti.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    CGRect rect  = [noti.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    [UIView animateWithDuration:duration animations:^{
+          self.toolBar.transform = CGAffineTransformMakeTranslation(0, - rect.size.height);
+    }];
+}
+
+//监听键盘 隐藏
+-(void)keyboardWillHide:(NSNotification *)noti{
+    CGFloat duration = [noti.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    [UIView animateWithDuration:duration animations:^{
+        self.toolBar.transform = CGAffineTransformIdentity;
+    }];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
 }
 
 -(void)setupTextView{
@@ -59,6 +131,8 @@
     textView.frame = self.view.bounds;
     textView.returnKeyType = UIReturnKeySend;
     [textView setHolderText:@"分享趣事..." ];
+    textView.delegate = self;
+    textView.alwaysBounceVertical = YES;
     [self.view addSubview:textView];
     self.textView = textView;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textViewChange) name:UITextViewTextDidChangeNotification object:textView];
@@ -66,7 +140,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-//    [self.textView becomeFirstResponder];
+    [self.textView becomeFirstResponder];
 }
 
 -(void)textViewChange{
@@ -87,7 +161,6 @@
 }
 
 -(void)sendStatus{
-    
     // 1.创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     

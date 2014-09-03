@@ -16,6 +16,15 @@ typedef enum {
     WBComposeToolBarButtonTypeEmotion
 } WBComposeToolbarButtonType;
 
+@protocol WbComposeToolBarDelegate  <NSObject>
+
+-(void)toolBarButtonDidClick:(UIButton *)btn;
+
+@end
+
+
 @interface WBComposeToolBar : UIView
+
+@property (nonatomic,assign) id<WbComposeToolBarDelegate> delegate;
 
 @end
