@@ -98,14 +98,14 @@
 }
 
 -(void)setBadgeValue:(NSString *)badgeValue{
-    if(badgeValue){
+    if(badgeValue && [badgeValue intValue] > 0){
+        self.badgeBtn.hidden = NO;
         [self.badgeBtn setTitle:badgeValue forState:UIControlStateNormal];
         CGSize titleSize = [badgeValue sizeWithFont:self.badgeBtn.titleLabel.font];
         CGSize imageSize = self.badgeBtn.currentBackgroundImage.size;
         CGFloat margin = 3;
         CGFloat y = margin;
         CGFloat w = imageSize.width;
-//        NSLog(@"---width: %f", self.frame.size.width);
         if(badgeValue.length > 1){
           w = imageSize.width + titleSize.width - 5;
         }
@@ -113,7 +113,7 @@
         CGFloat h = imageSize.height;
         
         self.badgeBtn.frame = CGRectMake(x, y, w, h);
-//         NSLog(@"----%@--:",NSStringFromCGRect(self.badgeBtn.frame));
+         NSLog(@"----%@--:",NSStringFromCGRect(self.badgeBtn.frame));
     }else{
         self.badgeBtn.hidden = YES;
     }

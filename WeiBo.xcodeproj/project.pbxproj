@@ -31,6 +31,7 @@
 		5C6854A619B6C15C00F95E0F /* WBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854A519B6C15C00F95E0F /* WBTextView.m */; };
 		5C6854A919B6FC8200F95E0F /* WBComposeToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854A819B6FC8200F95E0F /* WBComposeToolBar.m */; };
 		5C6854AC19B7363E00F95E0F /* WBComposePhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854AB19B7363E00F95E0F /* WBComposePhotosView.m */; };
+		5C6854AF19B80EF300F95E0F /* WBUserUnreadCountResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854AE19B80EF300F95E0F /* WBUserUnreadCountResult.m */; };
 		5C6B99B319B2F7BA00FC58D0 /* WBOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B99B219B2F7BA00FC58D0 /* WBOAuthViewController.m */; };
 		5C6B99C919B2F9B600FC58D0 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B99B719B2F9B600FC58D0 /* AFHTTPRequestOperation.m */; };
 		5C6B99CA19B2F9B600FC58D0 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6B99B919B2F9B600FC58D0 /* AFHTTPRequestOperationManager.m */; };
@@ -154,6 +155,8 @@
 		5C6854A819B6FC8200F95E0F /* WBComposeToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBComposeToolBar.m; sourceTree = "<group>"; };
 		5C6854AA19B7363E00F95E0F /* WBComposePhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBComposePhotosView.h; sourceTree = "<group>"; };
 		5C6854AB19B7363E00F95E0F /* WBComposePhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBComposePhotosView.m; sourceTree = "<group>"; };
+		5C6854AD19B80EF300F95E0F /* WBUserUnreadCountResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBUserUnreadCountResult.h; sourceTree = "<group>"; };
+		5C6854AE19B80EF300F95E0F /* WBUserUnreadCountResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBUserUnreadCountResult.m; sourceTree = "<group>"; };
 		5C6B99B119B2F7BA00FC58D0 /* WBOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBOAuthViewController.h; sourceTree = "<group>"; };
 		5C6B99B219B2F7BA00FC58D0 /* WBOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBOAuthViewController.m; sourceTree = "<group>"; };
 		5C6B99B619B2F9B600FC58D0 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -516,6 +519,8 @@
 		5C40C57519AEDEDB009DE543 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5C6854AD19B80EF300F95E0F /* WBUserUnreadCountResult.h */,
+				5C6854AE19B80EF300F95E0F /* WBUserUnreadCountResult.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1044,6 +1049,7 @@
 				5C6B9A2919B410C900FC58D0 /* SDWebImageDownloader.m in Sources */,
 				5C3DAC5119AF6F73009EB8B2 /* WBNavigationViewController.m in Sources */,
 				5C40C58B19AEDEDB009DE543 /* WBMeViewController.m in Sources */,
+				5C6854AF19B80EF300F95E0F /* WBUserUnreadCountResult.m in Sources */,
 				5CF3916319B5616E008F0B23 /* MJPhotoToolbar.m in Sources */,
 				5CF3918319B5F95E008F0B23 /* MJRefreshConst.m in Sources */,
 				5C6854A319B6B84C00F95E0F /* WBComposeViewController.m in Sources */,

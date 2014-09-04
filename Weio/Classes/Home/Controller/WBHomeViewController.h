@@ -10,4 +10,6 @@
 
 @interface WBHomeViewController : UITableViewController
 
+-(void)loadNew;
+
 @end

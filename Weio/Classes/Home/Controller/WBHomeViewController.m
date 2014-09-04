@@ -130,6 +130,9 @@
 
 
 -(void)loadNew{
+    // 0.清除提醒数字
+    self.tabBarItem.badgeValue = nil;
+    
     AFHTTPRequestOperationManager *man = [AFHTTPRequestOperationManager manager];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [WBAccountTool account].access_token;
@@ -154,8 +157,13 @@
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];
         
+        
         //上面下拉一个小框 显示更新数量
         [self displayUpdateCount:(int)updateCount];
+        
+        // 滚到最上面
+        NSIndexPath *topPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:topPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.refreshControl endRefreshing];
     }];
