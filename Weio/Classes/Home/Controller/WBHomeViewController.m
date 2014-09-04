@@ -27,6 +27,8 @@
 @property (nonatomic,strong) MJRefreshFooterView *refreshFootView;
 @property (nonatomic,strong) WBTitleButton *titleBtn;
 
+@property (nonatomic,assign) BOOL loadingMore;
+
 @end
 
 @implementation WBHomeViewController
@@ -104,6 +106,7 @@
         }
         [self.tableView reloadData];
         [self.refreshFootView endRefreshing];
+        self.loadingMore = NO;
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.refreshFootView endRefreshing];
@@ -156,7 +159,7 @@
         self.statusFrames = tempStatusArr;
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];
-        
+        NSLog(@"----load new");
         
         //上面下拉一个小框 显示更新数量
         [self displayUpdateCount:(int)updateCount];
@@ -262,6 +265,14 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [self.statusFrames[indexPath.row] cellHeight];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(self.loadingMore == NO && scrollView.frame.size.height > ScreenH && scrollView.contentOffset.y + scrollView.frame.size.height  > scrollView.contentSize.height){
+        self.loadingMore  =YES;
+        [self loadMore];
+        NSLog(@"----load more");
+    }
 }
 
 @end
