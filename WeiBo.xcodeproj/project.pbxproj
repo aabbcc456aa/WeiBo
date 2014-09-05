@@ -27,6 +27,13 @@
 		5C40C59119AEDF04009DE543 /* UIImage+WB.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C40C59019AEDF04009DE543 /* UIImage+WB.m */; };
 		5C40C59419AEEA1C009DE543 /* WBTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C40C59319AEEA1C009DE543 /* WBTabBar.m */; };
 		5C40C59719AEECCB009DE543 /* WBTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C40C59619AEECCB009DE543 /* WBTabBarButton.m */; };
+		5C48A3BF19B94F9500498445 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48A3B519B94F9500498445 /* FMDatabase.m */; };
+		5C48A3C019B94F9500498445 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48A3B719B94F9500498445 /* FMDatabaseAdditions.m */; };
+		5C48A3C119B94F9500498445 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48A3B919B94F9500498445 /* FMDatabasePool.m */; };
+		5C48A3C219B94F9500498445 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48A3BB19B94F9500498445 /* FMDatabaseQueue.m */; };
+		5C48A3C319B94F9500498445 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48A3BE19B94F9500498445 /* FMResultSet.m */; };
+		5C48A3C719B9500F00498445 /* WBStatusTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48A3C619B9500F00498445 /* WBStatusTool.m */; };
+		5C48A3CB19B96CD700498445 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C48A3CA19B96CD700498445 /* libsqlite3.dylib */; };
 		5C6854A319B6B84C00F95E0F /* WBComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854A219B6B84C00F95E0F /* WBComposeViewController.m */; };
 		5C6854A619B6C15C00F95E0F /* WBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854A519B6C15C00F95E0F /* WBTextView.m */; };
 		5C6854A919B6FC8200F95E0F /* WBComposeToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6854A819B6FC8200F95E0F /* WBComposeToolBar.m */; };
@@ -147,6 +154,21 @@
 		5C40C59319AEEA1C009DE543 /* WBTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTabBar.m; sourceTree = "<group>"; };
 		5C40C59519AEECCB009DE543 /* WBTabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTabBarButton.h; sourceTree = "<group>"; };
 		5C40C59619AEECCB009DE543 /* WBTabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTabBarButton.m; sourceTree = "<group>"; };
+		5C48A3B419B94F9500498445 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		5C48A3B519B94F9500498445 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		5C48A3B619B94F9500498445 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		5C48A3B719B94F9500498445 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		5C48A3B819B94F9500498445 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		5C48A3B919B94F9500498445 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		5C48A3BA19B94F9500498445 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		5C48A3BB19B94F9500498445 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		5C48A3BC19B94F9500498445 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		5C48A3BD19B94F9500498445 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		5C48A3BE19B94F9500498445 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		5C48A3C519B9500F00498445 /* WBStatusTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStatusTool.h; sourceTree = "<group>"; };
+		5C48A3C619B9500F00498445 /* WBStatusTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStatusTool.m; sourceTree = "<group>"; };
+		5C48A3C819B9516D00498445 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		5C48A3CA19B96CD700498445 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		5C6854A119B6B84C00F95E0F /* WBComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBComposeViewController.h; sourceTree = "<group>"; };
 		5C6854A219B6B84C00F95E0F /* WBComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBComposeViewController.m; sourceTree = "<group>"; };
 		5C6854A419B6C15C00F95E0F /* WBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTextView.h; sourceTree = "<group>"; };
@@ -304,6 +326,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C48A3CB19B96CD700498445 /* libsqlite3.dylib in Frameworks */,
 				5C40C52619AED1F6009DE543 /* CoreGraphics.framework in Frameworks */,
 				5C40C52819AED1F6009DE543 /* UIKit.framework in Frameworks */,
 				5C40C52419AED1F6009DE543 /* Foundation.framework in Frameworks */,
@@ -345,6 +368,8 @@
 		5C40C52219AED1F6009DE543 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C48A3CA19B96CD700498445 /* libsqlite3.dylib */,
+				5C48A3C819B9516D00498445 /* libsqlite3.0.dylib */,
 				5C40C52319AED1F6009DE543 /* Foundation.framework */,
 				5C40C52519AED1F6009DE543 /* CoreGraphics.framework */,
 				5C40C52719AED1F6009DE543 /* UIKit.framework */,
@@ -447,6 +472,7 @@
 		5C40C56B19AEDEDB009DE543 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				5C48A3C419B94FF000498445 /* Tool */,
 				5C40C56C19AEDEDB009DE543 /* Controller */,
 				5C40C56F19AEDEDB009DE543 /* Model */,
 				5C40C57019AEDEDB009DE543 /* View */,
@@ -627,6 +653,33 @@
 			path = Catagory;
 			sourceTree = "<group>";
 		};
+		5C48A3B319B94F9500498445 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				5C48A3B419B94F9500498445 /* FMDatabase.h */,
+				5C48A3B519B94F9500498445 /* FMDatabase.m */,
+				5C48A3B619B94F9500498445 /* FMDatabaseAdditions.h */,
+				5C48A3B719B94F9500498445 /* FMDatabaseAdditions.m */,
+				5C48A3B819B94F9500498445 /* FMDatabasePool.h */,
+				5C48A3B919B94F9500498445 /* FMDatabasePool.m */,
+				5C48A3BA19B94F9500498445 /* FMDatabaseQueue.h */,
+				5C48A3BB19B94F9500498445 /* FMDatabaseQueue.m */,
+				5C48A3BC19B94F9500498445 /* FMDB.h */,
+				5C48A3BD19B94F9500498445 /* FMResultSet.h */,
+				5C48A3BE19B94F9500498445 /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		5C48A3C419B94FF000498445 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				5C48A3C519B9500F00498445 /* WBStatusTool.h */,
+				5C48A3C619B9500F00498445 /* WBStatusTool.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		5C68549D19B6B7E700F95E0F /* Compose */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,6 +758,7 @@
 		5C6B99B419B2F9B600FC58D0 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				5C48A3B319B94F9500498445 /* fmdb */,
 				5CF3917619B5F95E008F0B23 /* MJRefresh */,
 				5CF3915019B5616E008F0B23 /* MJPhotoBrowser */,
 				5CE7B00619B465BF00BE6E1F /* TimeAgo */,
@@ -1039,12 +1093,14 @@
 				5C6B9A2719B410C900FC58D0 /* SDWebImageCompat.m in Sources */,
 				5C6B9A2B19B410C900FC58D0 /* SDWebImageManager.m in Sources */,
 				5C6B9A0119B410BC00FC58D0 /* MJType.m in Sources */,
+				5C48A3C019B94F9500498445 /* FMDatabaseAdditions.m in Sources */,
 				5C6854A919B6FC8200F95E0F /* WBComposeToolBar.m in Sources */,
 				5CF3914F19B55C36008F0B23 /* WBPhoto.m in Sources */,
 				5C6B9A2619B410C900FC58D0 /* SDImageCache.m in Sources */,
 				5C6B99D419B30D4700FC58D0 /* WBAccount.m in Sources */,
 				5C6B9A2819B410C900FC58D0 /* SDWebImageDecoder.m in Sources */,
 				5C40C58919AEDEDB009DE543 /* WBHomeViewController.m in Sources */,
+				5C48A3C319B94F9500498445 /* FMResultSet.m in Sources */,
 				5C6B99FE19B410BC00FC58D0 /* MJIvar.m in Sources */,
 				5C6B9A2919B410C900FC58D0 /* SDWebImageDownloader.m in Sources */,
 				5C3DAC5119AF6F73009EB8B2 /* WBNavigationViewController.m in Sources */,
@@ -1053,6 +1109,7 @@
 				5CF3916319B5616E008F0B23 /* MJPhotoToolbar.m in Sources */,
 				5CF3918319B5F95E008F0B23 /* MJRefreshConst.m in Sources */,
 				5C6854A319B6B84C00F95E0F /* WBComposeViewController.m in Sources */,
+				5C48A3C719B9500F00498445 /* WBStatusTool.m in Sources */,
 				5C6B99CD19B2F9B600FC58D0 /* AFSecurityPolicy.m in Sources */,
 				5C6B9A2F19B410C900FC58D0 /* UIImage+MultiFormat.m in Sources */,
 				5C6B99FF19B410BC00FC58D0 /* MJMember.m in Sources */,
@@ -1079,12 +1136,15 @@
 				5CF3918519B5F95E008F0B23 /* MJRefreshHeaderView.m in Sources */,
 				5C6B9A3119B410C900FC58D0 /* UIImageView+WebCache.m in Sources */,
 				5CD756B519B06D9900CA94CA /* WBTitleButton.m in Sources */,
+				5C48A3BF19B94F9500498445 /* FMDatabase.m in Sources */,
 				5C6B9A2419B410C900FC58D0 /* MKAnnotationView+WebCache.m in Sources */,
+				5C48A3C219B94F9500498445 /* FMDatabaseQueue.m in Sources */,
 				5CF3917219B56B09008F0B23 /* WBPhotosView.m in Sources */,
 				5C40C59719AEECCB009DE543 /* WBTabBarButton.m in Sources */,
 				5CF3916F19B56846008F0B23 /* SDWebImageManager+MJ.m in Sources */,
 				5C6854A619B6C15C00F95E0F /* WBTextView.m in Sources */,
 				5C6B9A2A19B410C900FC58D0 /* SDWebImageDownloaderOperation.m in Sources */,
+				5C48A3C119B94F9500498445 /* FMDatabasePool.m in Sources */,
 				5CF3916219B5616E008F0B23 /* MJPhotoProgressView.m in Sources */,
 				5CF3916C19B56815008F0B23 /* MBProgressHUD+Add.m in Sources */,
 				5CF3917519B56B2C008F0B23 /* WBPhotoImage.m in Sources */,

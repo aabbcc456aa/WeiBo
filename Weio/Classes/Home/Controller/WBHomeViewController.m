@@ -19,6 +19,7 @@
 #import "WBPhoto.h"
 #import "MJRefresh.h"
 #import "WBUser.h"
+#import "WBStatusTool.h"
 
 @interface WBHomeViewController ()<MJRefreshBaseViewDelegate>
 
@@ -50,8 +51,21 @@
     
     // load username
     [self loadUserInfo];
-
     
+    // 首次数据加载 首先从数据库加载，没有再从网络加载
+    [self firstLoadData];
+}
+
+-(void)firstLoadData{
+    // 首先从数据库查找，然后再到网络查找
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSArray *arrDict = [WBStatusTool statusWithParams:params];
+    if(arrDict.count > 0){
+        [self refreshNewData:arrDict];
+    }else{
+        // 从网络加载数据
+        [self loadNew ];
+    }
 }
 
 -(void)loadUserInfo{
@@ -95,22 +109,30 @@
         WBStatusFrame *lastStatusFrame = [self.statusFrames lastObject];
         params[@"max_id"] = lastStatusFrame.status.idstr;
     }
-    
-    // 3.发送请求
-    [man GET:@"https://api.weibo.com/2/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *array  =[WBStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-        for(WBStatus *status in array){
-            WBStatusFrame *statusFrame = [[WBStatusFrame alloc]init];
-            [statusFrame setStatus:status];
-            [self.statusFrames addObject:statusFrame];
-        }
-        [self.tableView reloadData];
-        [self.refreshFootView endRefreshing];
-        self.loadingMore = NO;
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [self.refreshFootView endRefreshing];
-    }];
+    NSArray *arrDict = [WBStatusTool statusWithParams:params];
+    if(arrDict.count > 0){
+         [self refreshMoreData:arrDict];
+    }else{
+        // 从网络加载数据
+        [man GET:@"https://api.weibo.com/2/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self refreshMoreData:responseObject[@"statuses"]];
+            [WBStatusTool addStatuses:responseObject[@"statuses"]];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self.refreshFootView endRefreshing];
+        }];
+    }
+}
+
+-(void)refreshMoreData:(NSArray *)array{
+    NSArray *statusArray = [WBStatus objectArrayWithKeyValuesArray:array];
+    for(WBStatus *status in statusArray){
+        WBStatusFrame *statusFrame = [[WBStatusFrame alloc]init];
+        [statusFrame setStatus:status];
+        [self.statusFrames addObject:statusFrame];
+    }
+    [self.tableView reloadData];
+    [self.refreshFootView endRefreshing];
+    self.loadingMore = NO;
 }
 
 -(void)dealloc{
@@ -128,10 +150,11 @@
     [self.refreshControl beginRefreshing];
     
     //manual invoke listen method
-    [self loadNew];
+//    [self loadNew];
 }
 
 
+// 加载最新数据不需要从数据查找，因为数据库永远不会存着最新数据
 -(void)loadNew{
     // 0.清除提醒数字
     self.tabBarItem.badgeValue = nil;
@@ -144,32 +167,39 @@
         WBStatusFrame *lastStatusFrame = self.statusFrames[0];
         params[@"since_id"] = lastStatusFrame.status.idstr;
     }
-    
+ 
     // 3.发送请求
     [man GET:@"https://api.weibo.com/2/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *array  =[WBStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-        NSMutableArray *tempStatusArr = [NSMutableArray array];
-        for(WBStatus *status in array){
-            WBStatusFrame *statusFrame = [[WBStatusFrame alloc]init];
-            [statusFrame setStatus:status];
-            [tempStatusArr addObject:statusFrame];
-        }
-        int updateCount = tempStatusArr.count;
-        [tempStatusArr addObjectsFromArray:self.statusFrames];
-        self.statusFrames = tempStatusArr;
-        [self.tableView reloadData];
-        [self.refreshControl endRefreshing];
-        NSLog(@"----load new");
-        
-        //上面下拉一个小框 显示更新数量
-        [self displayUpdateCount:(int)updateCount];
-        
-        // 滚到最上面
-        NSIndexPath *topPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [self.tableView scrollToRowAtIndexPath:topPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+//         NSArray *array  =[WBStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        [self refreshNewData:responseObject[@"statuses"]];
+         // --- 存储到数据库 ---
+        [WBStatusTool addStatuses:responseObject[@"statuses"]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.refreshControl endRefreshing];
     }];
+}
+
+-(void)refreshNewData:(NSArray *)arrayDict{
+    NSArray *array  =[WBStatus objectArrayWithKeyValuesArray:arrayDict];
+    NSMutableArray *tempStatusArr = [NSMutableArray array];
+    for(WBStatus *status in array){
+        WBStatusFrame *statusFrame = [[WBStatusFrame alloc]init];
+        [statusFrame setStatus:status];
+        [tempStatusArr addObject:statusFrame];
+    }
+    int updateCount = tempStatusArr.count;
+    [tempStatusArr addObjectsFromArray:self.statusFrames];
+    self.statusFrames = tempStatusArr;
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
+    
+    //上面下拉一个小框 显示更新数量
+    [self displayUpdateCount:(int)updateCount];
+    
+    // 滚到最上面
+    NSIndexPath *topPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:topPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+
 }
 
 -(void)displayUpdateCount:(int)count{
